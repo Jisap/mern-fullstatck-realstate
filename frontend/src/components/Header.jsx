@@ -13,11 +13,11 @@ const Header = () => {
             <span className='font-[900] text-[24px]'>Casa<span className='font-[600] medium-20'>Central</span></span>
           </Link>
           {/* navbar */}
-          <div className=''>
+          <div className='flexCenter gap-x-4'>
             {/* desktop */}
             <Navbar />
             {/* mobile */}
-            <Navbar />
+            {/* <Navbar /> */}
           </div>
           {/* buttons */}
           <div>
