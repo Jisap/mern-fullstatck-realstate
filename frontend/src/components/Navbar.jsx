@@ -5,7 +5,7 @@ import { RiCheckboxMultipleBlankFill } from "react-icons/ri";
 
 const Navbar = ({containerStyles}) => {
   return (
-    <nav>
+    <nav className={`${containerStyles}`}>
       <NavLink
         to='/'
         className={({isActive}) => isActive ? 'active-link flexCenter gap-x-1 rounded-full px-2 py-1' : 'flexCenter gap-x-1 rounded-full px-2 py-1'}
