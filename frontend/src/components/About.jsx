@@ -24,6 +24,16 @@ const About = () => {
               </p>
             </div>
           </div>
+        {/* right */}
+        <div>
+          <span>Unveiling Our Journey</span>
+          <h2>Our Commitment Crafting Extraordinary Real Estate Experiences</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
       </div>
     </section>
   )
