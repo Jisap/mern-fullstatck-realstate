@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { MdMenu, MdClose } from 'react-icons/md'
+import userIcon from "../assets/user.svg"
 
 const Header = () => {
 
@@ -35,7 +36,7 @@ const Header = () => {
             />
           </div>
           {/* buttons */}
-          <div>
+          <div className="flexBetween gap-x-3 sm:gap-x-5 bold-16">
             {!menuOpened ? (
               <MdMenu 
                 className="xl:hidden cursor-pointer text-3xl hover:text-secondary"
@@ -47,6 +48,10 @@ const Header = () => {
                 onClick={toggleMenu}
               />
             )}
+            <button className="btn-secondary flexCenter gap-x-2 medium-16 rounded-full">
+              <img src={userIcon} alt="" height={22} width={22} />
+              <span>Login</span>
+            </button>
           </div>
         </div>
       </div>
