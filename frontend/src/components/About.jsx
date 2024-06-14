@@ -84,7 +84,7 @@ const About = () => {
                   </Countup>
                   <h4 className='bold-22'>k+</h4>
                 </div>
-                <p>{statistic.label</p>
+                <p>{statistic.label}</p>
               </div>
             ))}
           </div>
