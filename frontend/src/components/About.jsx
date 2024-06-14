@@ -57,31 +57,29 @@ const About = () => {
             </div>
           </div>
         {/* right */}
-        <div>
-          <span>Unveiling Our Journey</span>
-          <h2>Our Commitment Crafting Extraordinary Real Estate Experiences</h2>
-          <p>
+        <div className="flex-1 flex justify-center flex-col">
+          <span className="medium-18">Unveiling Our Journey</span>
+          <h2 className="h2">Our Commitment Crafting Extraordinary Real Estate Experiences</h2>
+          <p className="py-5">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
             nisi ut aliquip ex ea commodo consequat.
           </p>
           {/* Statistics container */}
-          <div>
+          <div className="flex flex-row gap-4">
             {statistics.map((statistic, index) => (
-              <div key={index}>
-                <div>
-                  <Countup
+              <div key={index} className="bg-primaryp-4 rounded-lg">
+                <div className="flex items-center gap-1">
+                  <CountUp
                     start={isVisible ? 0 : null}
                     end={statistic.value}
                     duration={10}
                     delay={3}
                   >
                     {({countUpRef}) => (
-                      <h3 ref={countUpRef} className='text-2xl font-semibold'>
-
-                      </h3>
+                      <h3 ref={countUpRef} className='text-2xl font-semibold'></h3>
                     )}
-                  </Countup>
+                  </CountUp>
                   <h4 className='bold-22'>k+</h4>
                 </div>
                 <p>{statistic.label}</p>
