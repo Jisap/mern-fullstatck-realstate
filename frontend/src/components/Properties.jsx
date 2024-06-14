@@ -46,7 +46,7 @@ const Properties = () => {
         >
           {PROPERTIES.map((property) => (
             <SwiperSlide key={property.title}>
-              <Item />
+              <Item property={property}/>
             </SwiperSlide>
           ))}
         </Swiper>
