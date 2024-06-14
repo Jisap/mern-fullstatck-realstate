@@ -1,11 +1,43 @@
-import React from 'react'
-import aboutImg from '../assets/about.jpg'
-import { RiDoubleQuotesL } from 'react-icons/ri'
+import React, { useState, useEffect } from 'react';
+import aboutImg from '../assets/about.jpg';
+import { RiDoubleQuotesL } from 'react-icons/ri';
+import CountUp from 'react-countup';
 
 
 const About = () => {
+
+  const statistics = [
+    {
+      label: "Happy clients", value: 12
+    },
+    {
+      label: "Diferents cities", value: 3
+    },
+    {
+      label: "Projects completed", value: 45
+    },
+  ]
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutSection = document.getElementById('about');
+      if(aboutSection){
+        const top = aboutSection.getBoundingClientRect().top;   // Posición del borde superior del elemento 'about' relativo a viewport
+        const isVisible = top < window.innerHeight - 100        // Si el borde superior del elemento 'about' está a menos de 100 píxeles de la parte inferior de la ventana, se considera visible.
+        setIsVisible(isVisible)
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  },[])
+
   return (
-    <section className="max-padd-container py-16 xl:py-28">
+    <section className="max-padd-container py-16 xl:py-28" id="about">
       {/* container */}
       <div className="flex flex-col xl:flex-row gap-10">
         {/* left */}
@@ -33,6 +65,29 @@ const About = () => {
             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
             nisi ut aliquip ex ea commodo consequat.
           </p>
+          {/* Statistics container */}
+          <div>
+            {statistics.map((statistic, index) => (
+              <div key={index}>
+                <div>
+                  <Countup
+                    start={isVisible ? 0 : null}
+                    end={statistic.value}
+                    duration={10}
+                    delay={3}
+                  >
+                    {({countUpRef}) => (
+                      <h3 ref={countUpRef} className='text-2xl font-semibold'>
+
+                      </h3>
+                    )}
+                  </Countup>
+                  <h4 className='bold-22'>k+</h4>
+                </div>
+                <p>{statistic.label</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
