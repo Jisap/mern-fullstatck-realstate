@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { VscSettings } from "react-icons/vsc";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from "swiper/modules"
+import "swiper/css";
+import "swiper/css/pagination"
+import { PROPERTIES } from "../constants/data";
+import Item from "./Item";
 
 
 const Properties = () => {
@@ -16,7 +22,34 @@ const Properties = () => {
           </Link>
         </div>
         {/* container */}
-        
+        <Swiper
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            600: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1124: {
+              slidesPerView: 3,
+              spaceBetween: 30
+            },
+            1300: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            }
+          }}
+          modules={[Autoplay]}
+          className="h-[488px] md:h-[533px] xl:h-[422px] mt-5"
+        >
+          {PROPERTIES.map((property) => (
+            <SwiperSlide key={property.title}>
+              <Item />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   )
