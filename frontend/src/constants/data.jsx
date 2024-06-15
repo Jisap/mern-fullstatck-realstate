@@ -97,5 +97,31 @@ export const PROPERTIES =[
       "parkings": 2
     }
   }
-
 ]
+
+export const BLOGS = [
+  {
+    title: "Maximizing Property Value: Tips for Sellers",
+    image: blog1,
+    category: "Selling",
+    summary: "Learn how to increase the value of your property before putting it on the market.",
+  },
+  {
+    title: "Finding the Perfect Home: A Buyer's Guide",
+    image: blog2,
+    category: "Buying",
+    summary: "Essential tips and strategies for finding your dream home.",
+  },
+  {
+    title: "Understanding the Real Estate Market Trends",
+    image: blog3,
+    category: "Market Trends",
+    summary: "Stay updated with the latest trends and insights in the real estate market.",
+  },
+  {
+    title: "Investment Properties: What to Look For",
+    image: blog4,
+    category: "Investing",
+    summary: "Key factors to consider when investing in real estate properties.",
+  },
+];
