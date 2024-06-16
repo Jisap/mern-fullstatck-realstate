@@ -7,9 +7,9 @@ const Searchbar = () => {
       <input 
         type="text" 
         placeholder="Enter residence name/city/country" 
-        className="bg-transparent border-none outline-none"
+        className="bg-transparent border-none outline-none w-full"
       />
-      <FaLocationDot className="relative right-4 text-xl hover:text-secondary"/>
+      <FaLocationDot className="relative right-4 text-xl hover:text-secondary cursor-pointer"/>
     </div>
   )
 }
