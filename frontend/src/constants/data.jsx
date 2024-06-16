@@ -141,7 +141,7 @@ export const FOOTER_LINKS = [
   {
     title: "Our Community",
     links: [
-      "Terms and Condicitions",
+      "Terms and Conditions",
       "Special Offers",
       "Customer Reviews",
     ],
@@ -149,14 +149,12 @@ export const FOOTER_LINKS = [
 ];
 
 export const FOOTER_CONTACT_INFO = {
-  title: "Constact Us",
+  title: "Contact Us",
   links: [
     { label: "Contact Number", value: "123-456-7890"},
     { label: "Email", value: "info@realestate.com" },
-    { label: "Address", value: "123 Real Estate Ave, Suite 100, Springfield, USA" },
-    { label: "Fax", value: "987-654-3210" },
+    { label: "Address", value: "123 Real Est Ave, Springfield, USA" },
     { label: "Customer Support", value: "support@realestate.com" },
-    { label: "Business Inquiries", value: "business@realestate.com" }
   ]
 }
 
