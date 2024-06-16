@@ -133,7 +133,7 @@ export const FOOTER_LINKS = [
       "About Us",
       "Latest Items",
       "Hot Offers",
-      "Popular descriptions",
+      "Popular residencies",
       "FAQ",
       "Privacy Policy",
     ],
