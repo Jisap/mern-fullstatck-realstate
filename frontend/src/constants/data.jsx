@@ -125,3 +125,49 @@ export const BLOGS = [
     summary: "Key factors to consider when investing in real estate properties.",
   },
 ];
+
+export const FOOTER_LINKS = [
+  {
+    title: "Learn More",
+    links: [
+      "About Us",
+      "Latest Items",
+      "Hot Offers",
+      "Popular descriptions",
+      "FAQ",
+      "Privacy Policy",
+    ],
+  },
+  {
+    title: "Our Community",
+    links: [
+      "Terms and Condicitions",
+      "Special Offers",
+      "Customer Reviews",
+    ],
+  },
+];
+
+export const FOOTER_CONTACT_INFO = {
+  title: "Constact Us",
+  links: [
+    { label: "Contact Number", value: "123-456-7890"},
+    { label: "Email", value: "info@realestate.com" },
+    { label: "Address", value: "123 Real Estate Ave, Suite 100, Springfield, USA" },
+    { label: "Fax", value: "987-654-3210" },
+    { label: "Customer Support", value: "support@realestate.com" },
+    { label: "Business Inquiries", value: "business@realestate.com" }
+  ]
+}
+
+export const SOCIALS = {
+  title: "Social",
+  links: [
+    { id: 1, label: "Facebook", icon: <FaFacebook />, url: "https://www.facebook.com/realestate" },
+    { id: 2, label: "Twitter", icon: <FaTwitter />, url: "https://www.twitter.com/realestate" },
+    { id: 3, label: "Instagram", icon: <FaInstagram />, url: "https://www.instagram.com/realestate" },
+    { id: 4, label: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/company/realestate" },
+    { id: 5, label: "YouTube", icon: <FaYoutube />, url: "https://www.youtube.com/realestate" },
+   
+  ]
+};
