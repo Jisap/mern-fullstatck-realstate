@@ -2,6 +2,7 @@ import React from 'react'
 import HeartBtn from './HeartBtn'
 import { MdOutlineBed, MdOutlineBathtub, MdOutlineGarage } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { CgRuler } from 'react-icons/cg'
 
 
 const Item = ({ property }) => {
@@ -33,6 +34,9 @@ const Item = ({ property }) => {
         </div>
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
           <MdOutlineGarage />{property.facilities.parkings}
+        </div>
+        <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
+          <CgRuler />400
         </div>
       </div>
 
