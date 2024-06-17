@@ -3,6 +3,7 @@ import dotenv from  'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { userRoute }  from './routes/userRoute.js'
+import { residencyRoute } from './routes/residencyRoute.js';
 
 dotenv.config()
 
@@ -18,4 +19,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
 
-app.use("/api/user", userRoute) // http://localhost:8000/api/user/register
+app.use("/api/user", userRoute)                               // http://localhost:8000/api/user/register
+app.use("/api/residency", residencyRoute)                     // http://localhost:8000/api/residency/create
