@@ -36,7 +36,7 @@ const Item = ({ property }) => {
           <MdOutlineGarage />{property.facilities.parkings}
         </div>
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
-          <CgRuler />400
+          <CgRuler /> 400
         </div>
       </div>
 
