@@ -107,4 +107,47 @@ export const cancelBooking = asyncHandler(async(req, res) => {
   } catch (err) {
     throw new Error(err.message)
   }
+});
+
+// To add a residency in favorites list of a user
+export const toFav = asyncHandler(async(req, res) => {
+
+  const {email} = req.body; // Email del usuario
+  const {rid} = req.params; // id de la residencia que se quiere añadir a favoritos  
+
+  try {
+    const user = await prisma.user.findUnique({ // Se busca el usuario según email
+      where: {email}
+    });
+
+    if (user.favResidenciesID.includes(rid)){            // Si en las residencias favoritas del usuario está incluida la que se quiere añadir
+      const updatedUser = await prisma.user.update({     // se actualiza el user.favResidenciesID eliminando el rid ( Pulsar en una existente -> borrarla) 
+        where: {email},
+        data: {
+          favResidenciesID: {
+            set: user.favResidenciesID.filter( (id) => id !== rid )  // Solo se deján los ids distintos del rid
+          }
+        }
+      })
+
+      res.send({message: "Removed from favourites", user: updatedUser})
+    
+    }else{                                              // Si por el contrario en las residendicas favoritas del usuario no esta incluida la que se quiere añadir
+      const updatedUser = await prisma.user.update({    // se actualiza el user.favResidenciesID añadiendo el rid (pulsar en una inexistente -> añadirla)
+        where: {email},
+        data: {
+          favResidenciesID: {
+            push: rid
+          }
+        }
+      })
+
+      res.send({message: "Updated favourites", user: updatedUser})
+    }
+
+  } catch (err) {
+    throw new Error(err.message)
+  }
 })
+
+
