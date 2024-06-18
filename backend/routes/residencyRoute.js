@@ -1,5 +1,5 @@
 import express from 'express';
-import { createResdidency, getAllResidencies } from '../controllers/residencyController.js';
+import { createResdidency, getAllResidencies, getResidency } from '../controllers/residencyController.js';
 
 
 const router = express.Router()
