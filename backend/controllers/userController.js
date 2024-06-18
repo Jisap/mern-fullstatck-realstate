@@ -43,13 +43,32 @@ export const bookVisit = asyncHandler(async(req, res) => {
       await prisma.user.update({                                      // Si en sus visitas programadas no hay ninguna que coincida con el id del argumento
         where: { email },                                             // se procede a actualizar el campo bookedVisits del usuario con dicho id
         data: {
-          bookedVisits: { push: {id}}
+          bookedVisits: { push: {id, date}}
         }
       })
     }
 
     res.send("Your visit is booked succesfully");
 
+  } catch (err) {
+    throw new Error(err.message)
+  }
+});
+
+// To get all bookings
+export const allBookings = asyncHandler(async(req, res) => {
+  
+  const { email } = req.body;
+
+  try {
+
+    const bookings = await prisma.user.findUnique({
+      where: { email },
+      select: { bookedVisits: true }
+    });
+
+    res.status(200).send(bookings);
+    
   } catch (err) {
     throw new Error(err.message)
   }
