@@ -151,7 +151,7 @@ export const toFav = asyncHandler(async(req, res) => {
 });
 
 // To get all favourites list
-export const allFav = asyncHandler(async(req, res) => {
+export const getAllFav = asyncHandler(async(req, res) => {
   const { email } = req.body
 
   try {
@@ -161,7 +161,7 @@ export const allFav = asyncHandler(async(req, res) => {
     });
 
     res.status(200).send(favResd)
-    
+
   } catch (err) {
     throw new Error(err.message)
   }

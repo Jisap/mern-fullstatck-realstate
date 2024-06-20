@@ -1,5 +1,5 @@
 import express from 'express';
-import { allBookings, allFav, bookVisit, cancelBooking, createUser, toFav } from "../controllers/userController.js"
+import { allBookings, bookVisit, cancelBooking, createUser, getAllFav, toFav } from "../controllers/userController.js"
 
 const router = express.Router()
 
@@ -8,6 +8,6 @@ router.post("/bookVisit/:id", bookVisit)
 router.post("/allBookings", allBookings)
 router.post("/removeBooking/:id", cancelBooking)
 router.post("/toFav/:rid", toFav)
-router.post("/allFav", allFav)
+router.post("/allFav", getAllFav)
 
 export  { router as userRoute }
