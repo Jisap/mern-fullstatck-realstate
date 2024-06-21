@@ -8,11 +8,22 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import { Suspense } from 'react'
 import Layout from './components/Layout'
+import { QueryClient, QueryClientProvider } from 'react-query' // v3
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
+import { ReactQueryDevtools } from 'react-query/devtools' // No es necesario instalar nada con la v3
+
+
 
 export default function App() {
+  
+  const queryClient = new QueryClient();
+
   return (
-    <BrowserRouter>
-    <Suspense fallback={<div>Loading data ...</div>}>
+    <QueryClientProvider client={queryClient}>
+
+      <BrowserRouter>
+      <Suspense fallback={<div>Loading data ...</div>}>
       
         <Routes>
           <Route element={<Layout />}>
@@ -24,7 +35,11 @@ export default function App() {
           </Route>
         </Routes>
             
-    </Suspense>
-    </BrowserRouter>
+      </Suspense>
+      </BrowserRouter>
+      <ToastContainer />
+      <ReactQueryDevtools initialIsOpen={false} />
+
+    </QueryClientProvider>
   )
 }
