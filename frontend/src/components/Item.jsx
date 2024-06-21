@@ -1,13 +1,19 @@
 import React from 'react'
 import HeartBtn from './HeartBtn'
 import { MdOutlineBed, MdOutlineBathtub, MdOutlineGarage } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CgRuler } from 'react-icons/cg'
 
 
 const Item = ({ property }) => {
+
+  const navigate = useNavigate()
+
   return (
-    <div className="rounded-2xl p-5 bg-white">
+    <div 
+      className="rounded-2xl p-5 bg-white" 
+      onClick={() => navigate(`../listing/${property.id}`)}
+    >
 
       <div className="pb-2 relative">
         <img 
@@ -48,7 +54,7 @@ const Item = ({ property }) => {
         <div className="bold-20">
           ${property.price}.00
         </div>
-        <Link to={'/'}>
+        <Link to={`/listing/${property.id}`}>
           <button className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm">
             View Details
           </button>
