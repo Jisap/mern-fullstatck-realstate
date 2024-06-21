@@ -1,6 +1,6 @@
 import React from 'react'
 import Searchbar from '../components/Searchbar'
-import { PROPERTIES } from '../constants/data'
+//import { PROPERTIES } from '../constants/data'
 import Item from "../components/Item";
 import useProperties from "../hooks/useProperties.jsx"
 import { PuffLoader } from 'react-spinners'

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from "swiper/modules"
 import "swiper/css";
 import "swiper/css/pagination"
-import { PROPERTIES } from "../constants/data";
+//import { PROPERTIES } from "../constants/data";
 import Item from "./Item";
 import useProperties from "../hooks/useProperties";
 import { PuffLoader } from 'react-spinners'
@@ -71,7 +71,7 @@ const Properties = () => {
           modules={[Autoplay]}
           className="h-[488px] md:h-[533px] xl:h-[422px] mt-5"
         >
-          {data.map((property) => (
+          {data.slice(0, 6).map((property) => (
             <SwiperSlide key={property.title}>
               <Item property={property}/>
             </SwiperSlide>
