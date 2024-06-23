@@ -3,6 +3,7 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 import GeocoderMarker  from './GeocoderMarker'
 
 const Map = ({address, city, country}) => {
+  console.log(address);
   return (
     <MapContainer
       center={[53.35, 18.8]}
