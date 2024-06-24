@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { MdMenu, MdClose } from 'react-icons/md'
 import userIcon from "../assets/user.svg"
+import { useAuth0 } from "@auth0/auth0-react"
 
 const Header = () => {
 
   const [active, setActive] = useState(false);
 
   const [menuOpened, setMenuOpened] = useState(false);
+
+  const { loginWithRedirect } = useAuth0()
 
   const toggleMenu = () => {
     setMenuOpened(!menuOpened)
@@ -65,7 +68,10 @@ const Header = () => {
                 onClick={toggleMenu}
               />
             )}
-            <button className="btn-secondary flexCenter gap-x-2 medium-16 rounded-full">
+            <button 
+              className="btn-secondary flexCenter gap-x-2 medium-16 rounded-full"
+              onClick={loginWithRedirect}
+            >
               <img src={userIcon} alt="" height={22} width={22} />
               <span>Login</span>
             </button>
