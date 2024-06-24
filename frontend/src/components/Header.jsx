@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import { MdMenu, MdClose } from 'react-icons/md'
 import userIcon from "../assets/user.svg"
 import { useAuth0 } from "@auth0/auth0-react"
+import ProfileMenu from './ProfileMenu'
 
 const Header = () => {
 
@@ -11,7 +12,7 @@ const Header = () => {
 
   const [menuOpened, setMenuOpened] = useState(false);
 
-  const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0()
 
   const toggleMenu = () => {
     setMenuOpened(!menuOpened)
@@ -68,13 +69,21 @@ const Header = () => {
                 onClick={toggleMenu}
               />
             )}
-            <button 
-              className="btn-secondary flexCenter gap-x-2 medium-16 rounded-full"
-              onClick={loginWithRedirect}
-            >
-              <img src={userIcon} alt="" height={22} width={22} />
-              <span>Login</span>
-            </button>
+            {!isAuthenticated 
+              ? (
+                <button 
+                  className="btn-secondary flexCenter gap-x-2 medium-16 rounded-full"
+                  onClick={loginWithRedirect}
+                >
+                  <img src={userIcon} alt="" height={22} width={22} />
+                  <span>Login</span>
+                </button> ) 
+              : (
+                <div>
+                  <ProfileMenu user={user} logout={logout}/>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
