@@ -57,3 +57,23 @@ export const createUser = async(email, token) => {    // Esta fn apunta a la rou
   }
 
 }
+
+export const bookVisit = async (value, propertyId, email, token) => {
+  try {
+    await api.post(`/user/bookVisit/${propertyId}`, 
+      { 
+        email,
+        id: propertyId,
+        date: dayjs(value).format('DD/MM/YYYY')
+      }, 
+      {       
+        headers: {
+          Authorization: `Bearer ${token}`              
+        }
+      }
+    )
+  } catch (error) {
+    toast.error("Something went wrong, Please try again")
+    throw error
+  }
+}

@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+import useAuthCheck from '../hooks/useAuthCheck.js'
 import { useQuery } from 'react-query'
 import { getProperty } from '../utils/api'
 import { useLocation } from 'react-router-dom'
@@ -9,8 +11,6 @@ import { CgRuler } from 'react-icons/cg'
 import { FaLocationDot } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
 import Map from '../components/Map'
-import useAuthCheck from '../hooks/useAuthCheck.js'
-import { useAuth0 } from '@auth0/auth0-react'
 import BookingModal from '../components/BookingModal'
 
 const Property = () => {
@@ -22,9 +22,9 @@ const Property = () => {
     () => getProperty(id)
   )
 
-  const [modalOpened, setModalOpened] = useSate(false)
+  const [modalOpened, setModalOpened] = useState(false)
   const { validateLogin } = useAuthCheck()              // Fn que comprueba si el usuario esta autenticado
-  const { user } = userAuth0()
+  const { user } = useAuth0()
 
   if (isLoading) {
     return (
