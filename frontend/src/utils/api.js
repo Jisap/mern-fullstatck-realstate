@@ -44,11 +44,11 @@ export const getProperty = async(id) => {
   }
 }
 
-export const createUser = async(email, token) => {
+export const createUser = async(email, token) => {    // Esta fn apunta a la route del backend para la creación de un usuario en bd
   try {
-    await api.post(`/user/register`, {email}, {
+    await api.post(`/user/register`, {email}, {       // Le envía el email
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`              // y el token de autenticación
       }
     })
   } catch (error) {

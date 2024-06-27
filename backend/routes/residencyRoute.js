@@ -7,9 +7,10 @@ import {
 import jwtCheck from '../config/auth0Config.js';
 
 
+
 const router = express.Router()
 
-router.post("/create",jwtCkeck, createResdidency)
+router.post("/create", jwtCheck, createResdidency)
 router.get("/allresd", getAllResidencies)
 router.get("/:id", getResidency)
 
