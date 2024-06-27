@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import UserDetailContext from '../context/userDetailContext'
 import { useAuth0 } from '@auth0/auth0-react'
 import useAuthCheck from '../hooks/useAuthCheck.js'
 import { useQuery } from 'react-query'
@@ -25,6 +26,12 @@ const Property = () => {
   const [modalOpened, setModalOpened] = useState(false)
   const { validateLogin } = useAuthCheck()              // Fn que comprueba si el usuario esta autenticado
   const { user } = useAuth0()
+
+  const {
+    userDetails: {token, bookings},
+    setUserDetails
+   } = useContext( UserDetailContext)
+
 
   if (isLoading) {
     return (
