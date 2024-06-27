@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useQuery } from 'react-query'
 import { getProperty } from '../utils/api'
 import { useLocation } from 'react-router-dom'
@@ -9,6 +9,9 @@ import { CgRuler } from 'react-icons/cg'
 import { FaLocationDot } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
 import Map from '../components/Map'
+import useAuthCheck from '../hooks/useAuthCheck.js'
+import { useAuth0 } from '@auth0/auth0-react'
+import BookingModal from '../components/BookingModal'
 
 const Property = () => {
 
@@ -18,6 +21,10 @@ const Property = () => {
     ["resd", id],
     () => getProperty(id)
   )
+
+  const [modalOpened, setModalOpened] = useSate(false)
+  const { validateLogin } = useAuthCheck()              // Fn que comprueba si el usuario esta autenticado
+  const { user } = userAuth0()
 
   if (isLoading) {
     return (
@@ -96,9 +103,19 @@ const Property = () => {
           </div>
 
           <div className="flexBetween">   
-            <button className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm">
+            <button 
+              className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm"
+              onClick={() => {validateLogin() && setModalOpened(true)}}  
+            >
               Book the visit
             </button>
+
+            <BookingModal 
+              opened={modalOpened}
+              setOpened={setModalOpened}
+              propertyId={id}
+              email={user?.email}
+            />
           </div>
         </div>
 

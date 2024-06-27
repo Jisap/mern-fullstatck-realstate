@@ -13,7 +13,7 @@ const Layout = () => {
   const { setUserDetails } = useContext(UserDetailContext);               // Obtenemos la fn para establecer el estado del user en la app
   const { mutate } = useMutation({                                        // mutation de  react-query para crear en bd un usuario
     mutationKey: [user?.email],
-    mutationFn: (token) => createUser(user?.email, token)
+    mutationFn: (token) => createUser(user?.email, token)                 // con validación del token
   })
 
   useEffect(() => {  
