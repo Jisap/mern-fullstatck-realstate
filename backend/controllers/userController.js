@@ -37,7 +37,7 @@ export const bookVisit = asyncHandler(async(req, res) => {
 
     if(allreadyBooked.bookedVisits.some((visit) => visit.id === id)){ // Si en sus visitas programadas hay alguna cuyo id coincida con el del argumento
       res.status(400).json({
-        message: "This residency already booked bu you"               // mensaje de que ya estaba programada (booked)
+        message: "This residency already booked by you"               // mensaje de que ya estaba programada (booked)
       })
     }else{
       await prisma.user.update({                                      // Si en sus visitas programadas no hay ninguna que coincida con el id del argumento

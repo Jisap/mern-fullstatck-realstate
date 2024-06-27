@@ -5,20 +5,33 @@ import { useMutation } from 'react-query'
 import userDetailcontext from '../context/userDetailContext'
 import { bookVisit } from '../utils/api'
 import { toast } from 'react-toastify'
+import dayjs from 'dayjs'
 
 
-const BookingModal = ({ opened, setOpened, propertyId, email }) => {
+const BookingModal = ({ opened, setOpened, propertyId, email }) => {        // Se reciben las props desde Property
 
-  const [value, setValue] = useState(null);                         // Estado para las fechas de la visita
-  const { userDetails: {token} } = useContext(userDetailcontext);   // Token almacenado en el context de userDetail
+  const [value, setValue] = useState(null);                                 // Estado para las fechas de la visita
+  const { 
+    userDetails: { token },                                                 // Token almacenado en el context de userDetail
+    setUserDetails
+  } = useContext(userDetailcontext);   
 
   const handleBookingSuccess = () => {
-    toast.success("Your visit has booked successfully", { position: "bottom-right"})
+    toast.success("Your visit has booked successfully", { position: "bottom-right"});
+    setUserDetails((prev) => ({
+      ...prev,
+      bookings: [
+        ...prev.bookings,
+        {
+          id: propertyId, date:dayjs(value).format('DD/MM/YYYY')
+        }
+      ]
+    }))
   }
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => bookVisit(value, propertyId, email, token),
-    onSuccess: () => handleBookingSuccess(),
+    mutationFn: () => bookVisit(value, propertyId, email, token),           // Peticion al backend en bookVisit
+    onSuccess: () => handleBookingSuccess(),                                // Si es exitosa se agrega a userDetails la nueva visita
     onError: ({response}) => toast.error(response.data.message),
     onSettled: () => setOpened(false)
   }) 
