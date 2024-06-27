@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
-import userDetailContext from '../context/userDetailContext'
+import UserDetailContext from '../context/userDetailContext'
 import { useMutation } from 'react-query'
 import { useAuth0 } from '@auth0/auth0-react';
 import { createUser } from '../utils/api'
@@ -10,7 +10,7 @@ import { createUser } from '../utils/api'
 const Layout = () => {
 
   const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();  // Cargamos la data del usuario autenticado
-  const { setUserDetails } = useContext(userDetailContext);               // Obtenemos la fn para establecer el estado del user en la app
+  const { userDetails, setUserDetails } = useContext(UserDetailContext);  // Obtenemos la fn para establecer el estado del user en la app
   const { mutate } = useMutation({                                        // mutation de  react-query para crear en bd un usuario basado en el email
     mutationKey: [user?.email],
     mutationFn: (token) => createUser(user?.email, token)                 // con validación del token (jwtCheck del backend)
@@ -31,11 +31,10 @@ const Layout = () => {
       mutate(res);                                                       // Por último se crea un usuario en bd en base al email respaldado por el token
     }                                                                    // sino existía antes. 
 
-
     isAuthenticated && getTokenAndRegister()                             // Esto se realizará si el usuario se autenticó
-
+    
   },[isAuthenticated])
-
+ 
   return (
     <>
       <div>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Modal, Button } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
 import { useMutation } from 'react-query'
-import userDetailcontext from '../context/userDetailContext'
+import UserDetailcontext from '../context/userDetailContext'
 import { bookVisit } from '../utils/api'
 import { toast } from 'react-toastify'
 import dayjs from 'dayjs'
@@ -14,7 +14,7 @@ const BookingModal = ({ opened, setOpened, propertyId, email }) => {        // S
   const { 
     userDetails: { token },                                                 // Token almacenado en el context de userDetail
     setUserDetails
-  } = useContext(userDetailcontext);   
+  } = useContext(UserDetailcontext);   
 
   const handleBookingSuccess = () => {
     toast.success("Your visit has booked successfully", { position: "bottom-right"});
@@ -27,6 +27,7 @@ const BookingModal = ({ opened, setOpened, propertyId, email }) => {        // S
         }
       ]
     }))
+    //console.log('userDetails actualizado:', userDetails);
   }
 
   const { mutate, isLoading } = useMutation({

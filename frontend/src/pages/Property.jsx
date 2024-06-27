@@ -14,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Map from '../components/Map'
 import BookingModal from '../components/BookingModal'
 import { useMutation } from 'react-query'
+import { Button } from '@mantine/core'
 
 
 const Property = () => {
@@ -32,7 +33,9 @@ const Property = () => {
   const {
     userDetails: {token, bookings},
     setUserDetails
-   } = useContext( UserDetailContext)
+  } = useContext( UserDetailContext)
+
+  //console.log('bookings antes de la reserva:', userDetails.bookings);
 
   const { mutate: cancelBooking, isLoading:cancelling } = useMutation({
     mutationFn: () => removeBooking(id, user?.email, token),

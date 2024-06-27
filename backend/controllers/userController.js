@@ -29,17 +29,27 @@ export const bookVisit = asyncHandler(async(req, res) => {
   const {id} = req.params;
 
   try {
-    
-    const allreadyBooked = await prisma.user.findUnique({ // Se busca el usuario con el email propocionado y sus visitas programadas
+    console.log(`Received request to book visit for email: ${email}, date: ${date}, propertyId: ${id}`);
+    const allreadyBooked = await prisma.user.findUnique({ // Se busca en el usuario con el email propocionado todas sus visitas programadas
       where: { email },
       select: { bookedVisits: true }
     });
 
+    if (!allreadyBooked) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    console.log(`User's booked visits: ${JSON.stringify(allreadyBooked.bookedVisits)}`);
+
     if(allreadyBooked.bookedVisits.some((visit) => visit.id === id)){ // Si en sus visitas programadas hay alguna cuyo id coincida con el del argumento
-      res.status(400).json({
+      console.log('The visit is already booked by this user.');
+      return res.status(400).json({
         message: "This residency already booked by you"               // mensaje de que ya estaba programada (booked)
       })
     }else{
+      console.log('Booking a new visit.');
       await prisma.user.update({                                      // Si en sus visitas programadas no hay ninguna que coincida con el id del argumento
         where: { email },                                             // se procede a actualizar el campo bookedVisits del usuario con dicho id
         data: {
@@ -48,9 +58,10 @@ export const bookVisit = asyncHandler(async(req, res) => {
       })
     }
 
-    res.send("Your visit is booked succesfully");
+    return res.send("Your visit is booked succesfully");
 
   } catch (err) {
+    console.error(`Error booking visit: ${err.message}`);
     throw new Error(err.message)
   }
 });
