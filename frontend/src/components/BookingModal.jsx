@@ -4,14 +4,23 @@ import { DatePicker } from '@mantine/dates'
 import { useMutation } from 'react-query'
 import userDetailcontext from '../context/userDetailContext'
 import { bookVisit } from '../utils/api'
+import { toast } from 'react-toastify'
+
 
 const BookingModal = ({ opened, setOpened, propertyId, email }) => {
 
   const [value, setValue] = useState(null);                         // Estado para las fechas de la visita
   const { userDetails: {token} } = useContext(userDetailcontext);   // Token almacenado en el context de userDetail
 
+  const handleBookingSuccess = () => {
+    toast.success("Your visit has booked successfully", { position: "bottom-right"})
+  }
+
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => bookVisit(value, propertyId, email, token)
+    mutationFn: () => bookVisit(value, propertyId, email, token),
+    onSuccess: () => handleBookingSuccess(),
+    onError: ({response}) => toast.error(response.data.message),
+    onSettled: () => setOpened(false)
   }) 
 
   return (

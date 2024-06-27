@@ -104,7 +104,7 @@ const Property = () => {
 
           <div className="flexBetween">   
             <button 
-              className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm"
+              className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm w-full"
               onClick={() => {validateLogin() && setModalOpened(true)}}  
             >
               Book the visit
