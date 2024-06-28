@@ -139,7 +139,7 @@ const Property = () => {
                 >
                   Cancel booking
                 </Button>
-                <p>
+                <p className="text-red-500 medium-15 ml-3">
                   You've already booked visit for {bookings?.filter((booking) => booking?.id === id)[0].date}
                 </p>
               </>
