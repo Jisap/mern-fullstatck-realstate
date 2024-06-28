@@ -12,7 +12,7 @@ const BookingModal = ({ opened, setOpened, propertyId, email }) => {        // S
 
   const [value, setValue] = useState(null);                                 // Estado para las fechas de la visita
   const { 
-    userDetails: { token },                                                 // Token almacenado en el context de userDetail
+    userDetails: { token },                                                 // Token del usuario logueado almacenado en el context de userDetail
     setUserDetails
   } = useContext(UserDetailcontext);   
 
@@ -27,12 +27,11 @@ const BookingModal = ({ opened, setOpened, propertyId, email }) => {        // S
         }
       ]
     }))
-    //console.log('userDetails actualizado:', userDetails);
   }
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: () => bookVisit(value, propertyId, email, token),           // Peticion al backend en bookVisit
-    onSuccess: () => handleBookingSuccess(),                                // Si es exitosa se agrega a userDetails la nueva visita
+  const { mutate, isLoading } = useMutation({                               // mutate llamará a
+    mutationFn: () => bookVisit(value, propertyId, email, token),           // api/bookVisit -> backend: /user/bookVisit/${propertyId}
+    onSuccess: () => handleBookingSuccess(),                                // Si es exitosa -> handleBookingSuccess -> Agrega a userDetails la nueva visita
     onError: ({response}) => toast.error(response.data.message),
     onSettled: () => setOpened(false)
   }) 

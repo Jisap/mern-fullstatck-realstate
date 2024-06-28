@@ -15,13 +15,15 @@ import Map from '../components/Map'
 import BookingModal from '../components/BookingModal'
 import { useMutation } from 'react-query'
 import { Button } from '@mantine/core'
+import { toast } from 'react-toastify'
 
 
 const Property = () => {
 
   const { pathname } = useLocation()
-  const id = pathname.split("/").slice(-1)[0]
-  const { data, isLoading, isError } = useQuery(
+  const id = pathname.split("/").slice(-1)[0]           // Obtención del id por el url
+
+  const { data, isLoading, isError } = useQuery(        // Petición al backend para obtener la data de la property
     ["resd", id],
     () => getProperty(id)
   )
@@ -31,18 +33,17 @@ const Property = () => {
   const { user } = useAuth0()
 
   const {
-    userDetails: {token, bookings},
+    userDetails: {token, bookings},                     // Ontención del context del estado del userDetails {token, bookings}
     setUserDetails
   } = useContext( UserDetailContext)
 
-  //console.log('bookings antes de la reserva:', userDetails.bookings);
 
-  const { mutate: cancelBooking, isLoading:cancelling } = useMutation({
+  const { mutate: cancelBooking, isLoading: cancelling } = useMutation({   // mutation de nombre cancelBooking llama a api/removeBooking -> backend: /user/removeBooking/${id}
     mutationFn: () => removeBooking(id, user?.email, token),
     onSuccess: () => {
-      setUserDetails((prev)=> ({
+      setUserDetails((prev)=> ({                                           // Si todo fue bien  
         ...prev,
-        bookings: prev.bookings.filter((booking) => booking?.id !== id)
+        bookings: prev.bookings.filter((booking) => booking?.id !== id)    // se quita de bookings[] la entrada correspondiente al id 
       }))
       toast.success("Booking cancelled", {position: 'bottom-right'})
     }
@@ -125,7 +126,8 @@ const Property = () => {
             </div>
           </div>
 
-          <div className="flexBetween">   
+          <div className="flexBetween"> 
+            {/* Si bookings[] incluye el id de la property -> button "Cancel" */}
             {bookings?.map((booking) => booking.id).includes(id) ? (
               <>
                 <Button
@@ -142,12 +144,15 @@ const Property = () => {
                 </p>
               </>
             ) : (
-              <button 
-                className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm w-full"
-                onClick={() => {validateLogin() && setModalOpened(true)}}  
-              >
-                Book the visit
-              </button>
+              <>
+                {/* Si Bookings[] no contiene el id de la property se muestra button (Book the visit) */}
+                <button 
+                  className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm w-full"
+                  onClick={() => {validateLogin() && setModalOpened(true)}}  
+                >
+                  Book the visit
+                </button>
+              </>
             )
             }
 
