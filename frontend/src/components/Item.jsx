@@ -23,7 +23,7 @@ const Item = ({ property }) => {
         />
         {/* like btn */}
         <div className="absolute top-4 right-6">
-          <HeartBtn />
+          <HeartBtn id={property?.id}/>
         </div>
       </div>
 

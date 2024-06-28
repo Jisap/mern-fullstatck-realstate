@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { FaHeart } from 'react-icons/fa'
 import useAuthCheck from '../hooks/useAuthCheck'
 import { useMutation } from 'react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import UserDetailContext from '../context/userDetailContext'
-import { updateFavourites } from '../utils/common'
+import { updateFavourites, checkFavourites } from '../utils/common'
 import { toFav } from '../utils/api'
 
 const HeartBtn = ({id}) => {
@@ -17,6 +17,12 @@ const HeartBtn = ({id}) => {
     userDetails: { token, favourites },                         // Obtención del context del estado del userDetails {token, favourites}
     setUserDetails
   } = useContext(UserDetailContext)
+
+
+  useEffect(() => {
+    setHeartColor(() => checkFavourites( id, favourites))
+  },[favourites])
+
 
   const { mutate } = useMutation({                              // mutate llama a api fn toFav -> backend: 'user/toFav
     mutationFn: () => toFav(id, user?.email, token),
