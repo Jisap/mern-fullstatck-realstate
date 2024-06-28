@@ -33,19 +33,19 @@ const Property = () => {
   const { user } = useAuth0()
 
   const {
-    userDetails: {token, bookings},                     // Ontención del context del estado del userDetails {token, bookings}
+    userDetails: { token, bookings },                     // Ontención del context del estado del userDetails {token, bookings}
     setUserDetails
-  } = useContext( UserDetailContext)
+  } = useContext(UserDetailContext)
 
 
   const { mutate: cancelBooking, isLoading: cancelling } = useMutation({   // mutation de nombre cancelBooking llama a api/removeBooking -> backend: /user/removeBooking/${id}
     mutationFn: () => removeBooking(id, user?.email, token),
     onSuccess: () => {
-      setUserDetails((prev)=> ({                                           // Si todo fue bien  
+      setUserDetails((prev) => ({                                           // Si todo fue bien  
         ...prev,
         bookings: prev.bookings.filter((booking) => booking?.id !== id)    // se quita de bookings[] la entrada correspondiente al id 
       }))
-      toast.success("Booking cancelled", {position: 'bottom-right'})
+      toast.success("Booking cancelled", { position: 'bottom-right' })
     }
   })
 
@@ -82,13 +82,13 @@ const Property = () => {
         />
         {/* like btn */}
         <div className="absolute top-4 right-6">
-          <HeartBtn />
+          <HeartBtn id={id} />
         </div>
       </div>
 
       {/* container */}
       <div className="xl:flexBetween gap-8">
-        
+
         {/* left-side */}
         <div className="flex-1">
           <h5 className="bold-16 my-1 text-secondary">{data?.city}</h5>
@@ -126,7 +126,7 @@ const Property = () => {
             </div>
           </div>
 
-          <div className="flexBetween"> 
+          <div className="flexBetween">
             {/* Si bookings[] incluye el id de la property -> button "Cancel" */}
             {bookings?.map((booking) => booking.id).includes(id) ? (
               <>
@@ -146,9 +146,9 @@ const Property = () => {
             ) : (
               <>
                 {/* Si Bookings[] no contiene el id de la property se muestra button (Book the visit) */}
-                <button 
+                <button
                   className="btn-secondary rounded-xl !py-[7px] !px-4 shadow-sm w-full"
-                  onClick={() => {validateLogin() && setModalOpened(true)}}  
+                  onClick={() => { validateLogin() && setModalOpened(true) }}
                 >
                   Book the visit
                 </button>
@@ -156,7 +156,7 @@ const Property = () => {
             )
             }
 
-            <BookingModal 
+            <BookingModal
               opened={modalOpened}
               setOpened={setModalOpened}
               propertyId={id}
@@ -167,8 +167,8 @@ const Property = () => {
 
         {/* rightSide */}
         <div className="flex-1">
-          <Map 
-            address={data?.address} 
+          <Map
+            address={data?.address}
             city={data?.city}
             country={data?.country}
           />
