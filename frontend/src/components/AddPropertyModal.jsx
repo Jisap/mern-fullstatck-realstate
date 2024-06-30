@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Modal } from '@mantine/core'
 import { Container, Stepper, Button, Group } from '@mantine/core';
 import { useAuth0 } from '@auth0/auth0-react'
-import  AddLocation  from './AddLocation'
+import AddLocation  from './AddLocation'
 
 const AddPropertyModal = ({opened, setOpened}) => {
 
@@ -24,7 +24,7 @@ const AddPropertyModal = ({opened, setOpened}) => {
     userEmail: user?.email,
   });
 
-  const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
+  const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
   return (
@@ -32,7 +32,7 @@ const AddPropertyModal = ({opened, setOpened}) => {
       opened={opened}
       onClose={() => setOpened(false)}
       closeOnClickOutside
-      size={"88rem"}
+      size={"90rem"}
     >
       <Container h={"34rem"} w={"100%"}>
         <>
@@ -62,10 +62,10 @@ const AddPropertyModal = ({opened, setOpened}) => {
             </Stepper.Completed>
           </Stepper>
 
-          {/* <Group justify="center" mt="xl">
+          <Group justify="center" mt="xl">
             <Button variant="default" onClick={prevStep}>Back</Button>
             <Button onClick={nextStep}>Next step</Button>
-          </Group> */}
+          </Group>
 
         </>
       </Container>
