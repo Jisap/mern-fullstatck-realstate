@@ -23,7 +23,7 @@ const Property = () => {
   const { pathname } = useLocation()
   const id = pathname.split("/").slice(-1)[0]           // Obtención del id por el url
 
-  const { data, isLoading, isError } = useQuery(        // Petición al backend para obtener la data de la property
+  const { data, isLoading, isError } = useQuery(        // Petición a api getProperty -> backend:"/residecy/id" para obtener la data de la property
     ["resd", id],
     () => getProperty(id)
   )
@@ -33,7 +33,7 @@ const Property = () => {
   const { user } = useAuth0()
 
   const {
-    userDetails: { token, bookings },                     // Ontención del context del estado del userDetails {token, bookings}
+    userDetails: { token, bookings },                     // Obtención del context del estado del userDetails {token, bookings}
     setUserDetails
   } = useContext(UserDetailContext)
 
