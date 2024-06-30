@@ -7,10 +7,12 @@ import { useMutation } from 'react-query'
 import { useAuth0 } from '@auth0/auth0-react';
 import { createUser } from '../utils/api'
 import useFavourites from '../hooks/useFavourites'
+import useBookings from '../hooks/useBookings.jsx'
 
 const Layout = () => {
 
   useFavourites()
+  useBookings()
 
   const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();  // Cargamos la data del usuario autenticado
   const { userDetails, setUserDetails } = useContext(UserDetailContext);  // Obtenemos la fn para establecer el estado del user en la app

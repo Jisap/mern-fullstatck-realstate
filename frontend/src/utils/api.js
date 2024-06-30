@@ -122,11 +122,30 @@ export const getAllFav = async(email, token) => {
         }
       }
     )
-    //console.log(res.data);
 
     return res.data["favResidenciesID"]
   } catch (error) {
     toast.error("Something went wrong while fetching favs, Please try again")
+    throw error
+  }
+}
+
+export const getAllBookings = async(email, token) => {
+  if(!token) return
+
+  try {
+    const res = await api.post(`/user/allBookings`, 
+      {email},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+    //console.log("res", res);
+    return res.data["bookedVisits"]
+  } catch (error) {
+    toast.error("Something went wrong while fetching bookings, Please try again")
     throw error
   }
 }
