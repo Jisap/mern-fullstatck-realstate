@@ -9,7 +9,7 @@ import Map from './Map'
 const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
 
   const { getAll } = useCountries()
-  console.log('Datos de países:', getAll());
+  //console.log('Datos de países:', getAll());
 
   const form = useForm({
     initialValues: {
@@ -80,7 +80,7 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
       </div>
 
       <Group justify="center" mt="xl">
-        <Button onClick={nextStep}>Next step</Button>
+        <Button type="submit" onClick={nextStep}>Next step</Button>
       </Group>
     </form>
   )
