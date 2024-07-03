@@ -8,6 +8,12 @@ const UploadImage = ({ nextStep, prevStep, propertyDetails, setPropertyDetails }
   const cloudinaryRef = useRef()
   const widgetRef = useRef()
 
+  const handleNext = () => {
+    setPropertyDetails((prev) => ({...prev, image: imageURL}))
+    nextStep()
+    console.log(propertyDetails);
+  }
+
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -50,7 +56,7 @@ const UploadImage = ({ nextStep, prevStep, propertyDetails, setPropertyDetails }
 
       <Group justify="center" mt="xl">
         <Button onClick={prevStep}>Go Back</Button>
-        <Button onClick={nextStep}>Next</Button>
+        <Button onClick={handleNext} disabled={!imageURL}>Next</Button>
       </Group>
     </div>
   )
