@@ -31,7 +31,7 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
     if(!hasErrors){
       setPropertyDetails((prev) => ({...prev, country, city, address}))
       nextStep()
-      console.log(propertyDetails);
+      //console.log(propertyDetails);
     }
   
   } 

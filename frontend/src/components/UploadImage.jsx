@@ -11,7 +11,7 @@ const UploadImage = ({ nextStep, prevStep, propertyDetails, setPropertyDetails }
   const handleNext = () => {                                              // Cuando se le da handleNext
     setPropertyDetails((prev) => ({...prev, image: imageURL}))            // Se añade a propertyDetails el valor de la imagen
     nextStep()                                                            // y se pasa al siguiente punto
-    console.log(propertyDetails);
+    //console.log(propertyDetails);
   }
 
   useEffect(() => {

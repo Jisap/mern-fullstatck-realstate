@@ -61,7 +61,12 @@ const AddPropertyModal = ({opened, setOpened}) => {
             </Stepper.Step>
             
             <Stepper.Step label="Final step" description="Get full access">
-              <Facilities />
+              <Facilities 
+                prevStep={prevStep}
+                nextStep={nextStep}
+                propertyDetails={propertyDetails}
+                setPropertyDetails={setPropertyDetails}
+              />
             </Stepper.Step>
             
             <Stepper.Completed>
