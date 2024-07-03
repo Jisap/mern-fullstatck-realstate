@@ -8,23 +8,23 @@ const UploadImage = ({ nextStep, prevStep, propertyDetails, setPropertyDetails }
   const cloudinaryRef = useRef()
   const widgetRef = useRef()
 
-  const handleNext = () => {
-    setPropertyDetails((prev) => ({...prev, image: imageURL}))
-    nextStep()
+  const handleNext = () => {                                              // Cuando se le da handleNext
+    setPropertyDetails((prev) => ({...prev, image: imageURL}))            // Se añade a propertyDetails el valor de la imagen
+    nextStep()                                                            // y se pasa al siguiente punto
     console.log(propertyDetails);
   }
 
   useEffect(() => {
-    cloudinaryRef.current = window.cloudinary;
+    cloudinaryRef.current = window.cloudinary;                            // Carga el widget de cloudinary
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
         cloudName: "downe22q2",
         uploadPreset: "hjr3nguo",
         maxFile: 1
       },
-      (err, result) => {
-        if(result.event === "success"){
-          setImageURL(result.info.secure_url)
+      (err, result) => {                                                  
+        if(result.event === "success"){                                   // Si se carga la imagen
+          setImageURL(result.info.secure_url)                             // se establece el estado  
         }
       }
     )

@@ -19,5 +19,11 @@ export const checkFavourites = (id, favourites) => {
 }
 
 export const validateString = (value) => {
-  return value?.length < 3 || value === null ? "Must have at least 3 characters" : null
+  console.log(value);
+  //return value?.length < 3 || value === null ? "Must have at least 3 characters" : null
+
+  if (value === null || value === undefined || value.length < 3) {
+    return "Must have at least 3 characters";
+  }
+  return null;
 }

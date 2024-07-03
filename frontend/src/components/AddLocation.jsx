@@ -13,9 +13,9 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
 
   const form = useForm({
     initialValues: {
-      country: propertyDetails?.country || '',
-      city: propertyDetails?.city || '',
-      address: propertyDetails?.address || '',
+      country: propertyDetails?.country,
+      city: propertyDetails?.city,
+      address: propertyDetails?.address,
     },
     validate: {
       country: (value) => validateString(value),
@@ -24,12 +24,14 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
     }
   })
 
-  const { city, country, address } = form.values;
+  const { country, city, address } = form.values;
 
   const handleSubmit= () => {
     const { hasErrors } = form.validate()
     if(!hasErrors){
-      setPropertyDetails((prev) => ({...prev, city, address, country}))
+      setPropertyDetails((prev) => ({...prev, country, city, address}))
+      nextStep()
+      console.log(propertyDetails);
     }
   
   } 
@@ -72,15 +74,15 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
         {/* right */}
         <div className="flex-1">
           <Map
-            address={address}
-            city={city}
             country={country}
+            city={city}
+            address={address}
           />
         </div>
       </div>
 
       <Group justify="center" mt="xl">
-        <Button type="submit" onClick={nextStep}>Next step</Button>
+        <Button type="submit">Next step</Button>
       </Group>
     </form>
   )
