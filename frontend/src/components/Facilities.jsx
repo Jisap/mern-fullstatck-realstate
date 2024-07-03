@@ -53,7 +53,7 @@ const Facilities = ({
       ...propertyDetails,
       facilities: {bedrooms, parkings, bathrooms}
     },
-      token
+      token, user?.email
     ),
     onError:({response}) => {
       toast.error(response.data.message,{ position: "botton-right" }),
