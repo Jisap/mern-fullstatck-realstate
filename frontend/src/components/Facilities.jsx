@@ -31,7 +31,7 @@ const Facilities = ({
     }
   })
 
-  const { bedrooms, parkings, bathrooms} = form.value
+  const { bedrooms, parkings, bathrooms } = form.value
 
   const handleSubmit = () => {
     const {hasErrors} = form.validate()
@@ -49,36 +49,36 @@ const Facilities = ({
   const { refetch: refetchProperties } = useProperties() 
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => createResidency({
-      ...propertyDetails,
-      facilities: {bedrooms, parkings, bathrooms}
-    },
-      token, user?.email
-    ),
-    onError:({response}) => {
-      toast.error(response.data.message,{ position: "botton-right" }),
-    }
-    onSettled: () => {
-      toast.success("Added Successfully", { position: "bottom-right" });
-      setPropertyDetails({
-        title: "",
-        description: "",
-        price: 0,
-        country: "",
-        city: "",
-        address: "",
-        image: null,
-        facilities: {
-          bedrooms: 0,
-          parkings: 0,
-          bathrooms: 0,
+    mutationFn: () => 
+      createResidency(
+        {
+          ...propertyDetails,
+          facilities: { bedrooms, parkings, bathrooms }
         },
-        userEmail: user?.email,
-      });
+        token, user?.email
+      ),
+      onError:({response}) => toast.error(response.data.message,{ position: "botton-right" }),
+      onSettled: () => {
+        toast.success("Added Successfully", { position: "bottom-right" });
+        setPropertyDetails({
+          title: "",
+          description: "",
+          price: 0,
+          country: "",
+          city: "",
+          address: "",
+          image: null,
+          facilities: {
+            bedrooms: 0,
+            parkings: 0,
+            bathrooms: 0,
+          },
+          userEmail: user?.email,
+        });
       setOpened(false)
       setActive(1)
       refetchProperties()
-    }
+      }
   })
 
   return (
