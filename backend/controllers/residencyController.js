@@ -13,7 +13,7 @@ export const createResdidency = asyncHandler(async(req, res) => {
     facilities, 
     image, 
     userEmail 
-  } = req.body.data
+  } = req.body.data || req.body
 
   try {
     const residency = await prisma.residency.create({

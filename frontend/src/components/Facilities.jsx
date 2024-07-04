@@ -32,6 +32,7 @@ const Facilities = ({
   })
 
   const { bedrooms, parkings, bathrooms } = form.value
+  
 
   const handleSubmit = () => {
     const {hasErrors} = form.validate()
@@ -112,7 +113,7 @@ const Facilities = ({
             Back
           </Button>
           <Button type="submit" color="green" disabled={isLoading}>
-            {isLoading ? "Submittin" : "Add Property"}
+            {isLoading ? "Submitting" : "Add Property"}
           </Button>
         </Group>
 
