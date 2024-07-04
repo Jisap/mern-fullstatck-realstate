@@ -31,7 +31,7 @@ const Facilities = ({
     }
   })
 
-  const { bedrooms, parkings, bathrooms } = form.value
+  const { bedrooms, parkings, bathrooms } = form.values
   
 
   const handleSubmit = () => {
@@ -47,6 +47,7 @@ const Facilities = ({
 
   const { user } = useAuth0();
   const { userDetails: { token }} = useContext(userDetailContext);
+  console.log(token);
   const { refetch: refetchProperties } = useProperties() 
 
   const { mutate, isLoading } = useMutation({
@@ -56,7 +57,8 @@ const Facilities = ({
           ...propertyDetails,
           facilities: { bedrooms, parkings, bathrooms }
         },
-        token, user?.email
+        token,
+        user?.email
       ),
       onError:({response}) => toast.error(response.data.message,{ position: "botton-right" }),
       onSettled: () => {
@@ -85,7 +87,7 @@ const Facilities = ({
   return (
     <Box maw={"30%"} mx="auto" my={"sm"}>
       <form
-        onsubmit={(e) => {
+        onSubmit={(e) => {
           e.preventDefault()
           handleSubmit()
         }}

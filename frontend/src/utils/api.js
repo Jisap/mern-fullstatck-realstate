@@ -150,7 +150,8 @@ export const getAllBookings = async(email, token) => {
   }
 }
 
-export const createResidency = async({ data, token, userEmail }) => {
+export const createResidency = async({ data, userEmail, token }) => {
+  if(!token) return
 
   const requestData = {...data, userEmail}
   console.log(requestData);
