@@ -1,8 +1,8 @@
 import asyncHandler from 'express-async-handler'
 import { prisma } from '../config/prismaConfig.js'
 
-export const createResdidency = asyncHandler(async(req, res) => {
-  
+export const createResidency = asyncHandler(async(req, res) => {
+  console.log(req.body.data);
   const { 
     title, 
     description, 
@@ -30,7 +30,7 @@ export const createResdidency = asyncHandler(async(req, res) => {
       }
     });
 
-    res.send({
+    res.status(201).send({
       message: "Residency created successfully",
       residency
     })

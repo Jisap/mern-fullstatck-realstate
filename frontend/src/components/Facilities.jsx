@@ -17,7 +17,7 @@ const Facilities = ({
   setActive
 }) => {
 
-  console.log(propertyDetails);
+  //console.log(propertyDetails);
 
   const form = useForm({
     initialValues: {
@@ -41,13 +41,19 @@ const Facilities = ({
         ...prev,
         facilities: {bedrooms, parkings, bathrooms},
       }))
+      console.log("Mutating with data:", {
+        ...propertyDetails,
+        facilities: { bedrooms, parkings, bathrooms },
+        userEmail: user?.email,
+        token
+      });
       mutate()
     }
   }
 
   const { user } = useAuth0();
   const { userDetails: { token }} = useContext(userDetailContext);
-  console.log(token);
+  
   const { refetch: refetchProperties } = useProperties() 
 
   const { mutate, isLoading } = useMutation({
@@ -57,10 +63,10 @@ const Facilities = ({
           ...propertyDetails,
           facilities: { bedrooms, parkings, bathrooms }
         },
+        user?.email,
         token,
-        user?.email
       ),
-      onError:({response}) => toast.error(response.data.message,{ position: "botton-right" }),
+      onError:({response}) => toast.error(response.data.message,{ position: "bottom-right" }),
       onSettled: () => {
         toast.success("Added Successfully", { position: "bottom-right" });
         setPropertyDetails({

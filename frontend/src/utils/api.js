@@ -150,9 +150,8 @@ export const getAllBookings = async(email, token) => {
   }
 }
 
-export const createResidency = async({ data, userEmail, token }) => {
-  if(!token) return
-
+export const createResidency = async( data, userEmail, token ) => {
+  console.log({...data});
   const requestData = {...data, userEmail}
   console.log(requestData);
   
@@ -165,6 +164,7 @@ export const createResidency = async({ data, userEmail, token }) => {
         }
       }
     )
+    //return res.data
   } catch (error) {
     throw error
   }
