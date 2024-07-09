@@ -15,7 +15,7 @@ const ProfileMenu = ({ user, logout }) => {
         <Menu.Item>
           Application
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item onClick={() => navigate('/favourites', { replace: true })}>
           Favourites
         </Menu.Item>
         <Menu.Item onClick={() => navigate('/bookings',{ replace: true })}>

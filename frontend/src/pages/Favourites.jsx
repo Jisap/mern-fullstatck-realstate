@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Searchbar from '../components/Searchbar'
 //import { PROPERTIES } from '../constants/data'
 import Item from "../components/Item";
 import useProperties from "../hooks/useProperties.jsx"
 import { PuffLoader } from 'react-spinners'
+import UserDetailsContext from '../context/userDetailContext'
 
 const Favourites = () => {
 
   const { data, isError, isLoading } = useProperties();
   const [filter, setFilter] = useState("");
+  const { userDetails: { favourites } } = useContext(UserDetailsContext)
 
   if (isError) {
     return (
@@ -43,13 +45,15 @@ const Favourites = () => {
           {/* container */}
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-10">
             {
-              data.filter((property) => (
-                property.title.toLowerCase().includes(filter.toLowerCase()) ||
-                property.city.toLowerCase().includes(filter.toLowerCase()) ||
-                property.country.toLowerCase().includes(filter.toLowerCase())
-              )).map((property) => (
-                <Item key={property.title} property={property} />
-              ))
+              data
+                .filter((property) => favourites.includes(property.id))
+                  .filter((property) => (
+                    property.title.toLowerCase().includes(filter.toLowerCase()) ||
+                    property.city.toLowerCase().includes(filter.toLowerCase()) ||
+                    property.country.toLowerCase().includes(filter.toLowerCase())
+                  )).map((property) => (
+                    <Item key={property.title} property={property} />
+                  ))
             }
 
 
